@@ -1,4 +1,5 @@
 import { GetNewRealeseUseCase } from '../use-cases'
+import type { GetNewRealeseArgs } from '#modules/newRelease/use-cases'
 
 
 
@@ -10,7 +11,7 @@ export class NewReleasesService {
   }
 
 
-  getAlbumByLink = (albumLink: string) => {
-    return this.getNewRealeseUseCase.execute(albumLink)
+  getNewRealese = ({ language, page, limit }: GetNewRealeseArgs) => {
+    return this.getNewRealeseUseCase.execute({ language, page, limit })
   }
 }

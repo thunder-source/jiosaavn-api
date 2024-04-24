@@ -10,7 +10,7 @@ describe('GetAlbumById', () => {
   })
 
   it('should get album by id 123', async () => {
-    const album = await getNewRealeseUseCase.execute('23241654')
+    const album = await getNewRealeseUseCase.execute({ language: 'hindi', limit: 5, page: 1 })
 
     expect(() => NewReleasesModel.parse(album)).not.toThrow()
   })

@@ -3,6 +3,26 @@ import { NewReleasesService } from '../services'
 import { NewReleasesModel } from '../models'
 import type { Routes } from '#common/types'
 
+const AllLanguages = [
+  "hindi",
+  "tamil",
+  "telugu",
+  "marathi",
+  "gujarati",
+  "english",
+  "bengali",
+  "kannada",
+  "bhojpuri",
+  "punjabi",
+  "malayalam",
+  "urdu",
+  "rajasthani",
+  "odia",
+  "assamese",
+  "haryanvi"
+]
+
+
 export class NewReleasesController implements Routes {
 
   public controller: OpenAPIHono
@@ -19,35 +39,37 @@ export class NewReleasesController implements Routes {
         method: 'get',
         path: '/newReleases',
         tags: ['newReleases'],
-        summary: 'Retrieve an album by ID or link',
-        description: 'Retrieve an album by providing either an ID or a direct link to the album on JioSaavn.',
+        summary: 'Retrieve an New Realeases Album',
+        description: `Retrieve an New Realeases Album by languages  // ${AllLanguages} // page no and limit.`,
         operationId: 'getAlbumByIdOrLink',
         request: {
           query: z.object({
-            id: z.string().optional().openapi({
-              title: 'Album ID',
+            language: z.string().optional().openapi({
+              title: 'Language',
               description: 'The unique ID of the album',
               type: 'string',
-              example: '23241654',
-              default: '23241654'
+              example: 'hindi',
+              default: ''
             }),
-            link: z
-              .string()
-              .url()
-              .optional()
-              .transform((value) => value?.match(/jiosaavn\.com\/album\/[^/]+\/([^/]+)$/)?.[1])
-              .openapi({
-                title: 'Album Link',
-                description: 'A direct link to the album on JioSaavn',
-                type: 'string',
-                example: 'https://www.jiosaavn.com/album/future-nostalgia/ITIyo-GDr7A_',
-                default: 'https://www.jiosaavn.com/album/future-nostalgia/ITIyo-GDr7A_'
-              })
+            page: z.string().pipe(z.coerce.number()).optional().openapi({
+              title: 'Page Number',
+              description: 'The page number of the search results to retrieve',
+              type: 'integer',
+              example: 0,
+              default: 0
+            }),
+            limit: z.string().pipe(z.coerce.number()).optional().openapi({
+              title: 'Limit',
+              description: 'Number of search results per page',
+              type: 'integer',
+              example: 10,
+              default: 10
+            })
           })
         },
         responses: {
           200: {
-            description: 'Successful response with album details',
+            description: 'Successful response with New Realeases Album',
             content: {
               'application/json': {
                 schema: z.object({
@@ -57,8 +79,8 @@ export class NewReleasesController implements Routes {
                     example: true
                   }),
                   data: NewReleasesModel.openapi({
-                    title: 'Album Details',
-                    description: 'The detailed information of the album.'
+                    title: 'New Realeases Album',
+                    description: 'Recently New Realeases Album'
                   })
                 })
               }
@@ -69,10 +91,11 @@ export class NewReleasesController implements Routes {
         }
       }),
       async (ctx) => {
-        const { id, link } = ctx.req.valid('query')
+        const { page, language, limit } = ctx.req.valid('query')
+        console.log("response", page, language, limit)
 
-        const response = link ? await this.newReleasesService.getAlbumByLink(link) : await this.newReleasesService
-
+        const response = await this.newReleasesService.getNewRealese({ language: language || 'hindi', page: page || 0, limit: limit || 10 })
+        console.log("response", response, "errojdsfjadsfjaods")
         return ctx.json({ success: true, data: response })
       }
     )

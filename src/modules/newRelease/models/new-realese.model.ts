@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { DownloadLinkModel } from '#common/models'
 import { SongAPIResponseModel, SongModel } from '#modules/songs/models'
 
-export const NewReleasesAPIResponseModel = z.object({
+export const NewReleasesAPIResponseModelBase = z.object({
   id: z.string(),
   title: z.string(),
   subtitle: z.string(),
@@ -16,15 +16,14 @@ export const NewReleasesAPIResponseModel = z.object({
   explicit_content: z.string(),
   list_count: z.string(),
   list_type: z.string(),
-  list: z.array(SongAPIResponseModel),
+  list: z.string(),
   more_info: z.object({
     artistMap: SongAPIResponseModel.shape.more_info.shape.artistMap,
     song_count: z.string(),
-    copyright_text: z.string(),
-    is_dolby_content: z.boolean(),
-    label_url: z.string()
+    release_date: z.string()
   })
 })
+
 
 export const NewReleasesModel = z.object({
   id: z.string(),
@@ -39,7 +38,19 @@ export const NewReleasesModel = z.object({
   songCount: z.number().nullable(),
   url: z.string(),
   image: z.array(DownloadLinkModel),
-  songs: z.array(SongModel).nullable()
+  // songs: z.array(SongModel).nullable()
+})
+
+
+export const NewReleasesAPIResponseModel = z.object({
+  total: z.number(),
+  lastPage: z.boolean(),
+  result: z.array(NewReleasesModel)
+})
+export const NewReleasesAPIResponseModelApi = z.object({
+  total: z.number(),
+  lastPage: z.boolean(),
+  data: z.array(NewReleasesAPIResponseModelBase)
 })
 
 

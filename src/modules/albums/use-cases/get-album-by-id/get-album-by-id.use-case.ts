@@ -12,10 +12,6 @@ export class GetAlbumByIdUseCase implements IUseCase<string, z.infer<typeof Albu
 
 
   async execute(id: string) {
-    // const { data } = await useFetch<z.infer<typeof AlbumAPIResponseModel>>({
-    //   endpoint: Endpoints.newReleases.id,
-    //   params: { albumid: id }
-    // })
     const { data } = await useFetch<z.infer<typeof AlbumAPIResponseModel>>({
       endpoint: Endpoints.albums.id,
       params: { albumid: id }

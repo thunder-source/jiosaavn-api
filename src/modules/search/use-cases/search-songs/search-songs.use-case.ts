@@ -24,8 +24,6 @@ export class SearchSongsUseCase implements IUseCase<SearchSongsArgs, z.infer<typ
       }
     })
 
-    console.log("object")
-
     return {
       total: data.total,
       start: data.start,
