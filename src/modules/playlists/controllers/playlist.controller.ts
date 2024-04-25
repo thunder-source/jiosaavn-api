@@ -90,15 +90,75 @@ export class PlaylistController implements Routes {
 
         const response = link
           ? await this.playlistService.getPlaylistByLink({
-              token: link,
-              page: page || 0,
-              limit: limit || 10
-            })
+            token: link,
+            page: page || 0,
+            limit: limit || 10
+          })
           : await this.playlistService.getPlaylistById({
-              id: id!,
-              page: page || 0,
-              limit: limit || 10
+            id: id!,
+            page: page || 0,
+            limit: limit || 10
+          })
+
+        return ctx.json({ success: true, data: response })
+      }
+    )
+    this.controller.openapi(
+      createRoute({
+        method: 'get',
+        path: '/top-playlists',
+        tags: ['Playlist'],
+        summary: 'Retrieve top playlists',
+        // description: 'Retrieve top playlists.',
+        operationId: 'getTopPlaylist',
+        request: {
+          query: z.object({
+            page: z.string().pipe(z.coerce.number()).optional().openapi({
+              title: 'Page Number',
+              description: 'The page number of the songs to retrieve from the playlist',
+              type: 'integer',
+              example: 0,
+              default: 0
+            }),
+            limit: z.string().pipe(z.coerce.number()).optional().openapi({
+              title: 'Limit',
+              description: 'Number of songs to retrieve per page',
+              type: 'integer',
+              example: 50,
+              default: 50
             })
+          })
+        },
+        responses: {
+          200: {
+            description: 'Successful response with playlist details',
+            content: {
+              'application/json': {
+                schema: z.object({
+                  success: z.boolean().openapi({
+                    description: 'Indicates the success status of the request.',
+                    type: 'boolean',
+                    example: true
+                  }),
+                  data: PlaylistModel.openapi({
+                    title: 'Playlist Details',
+                    description: 'The detailed information of the playlist.'
+                  })
+                })
+              }
+            }
+          },
+          400: { description: 'Bad request due to missing or invalid query parameters.' },
+          404: { description: 'The playlist could not be found with the provided ID or link.' }
+        }
+      }),
+      async (ctx) => {
+        const { page, limit } = ctx.req.valid('query')
+
+        const response = await this.playlistService.getTopPlaylist({
+          page: page || 0,
+          limit: limit || 10
+        })
 
         return ctx.json({ success: true, data: response })
       }

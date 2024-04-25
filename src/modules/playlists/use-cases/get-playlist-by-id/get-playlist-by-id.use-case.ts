@@ -13,7 +13,7 @@ export interface GetPlaylistByIdArgs {
 }
 
 export class GetPlaylistByIdUseCase implements IUseCase<GetPlaylistByIdArgs, z.infer<typeof PlaylistModel>> {
-  constructor() {}
+  constructor() { }
 
   async execute({ id, limit, page }: GetPlaylistByIdArgs) {
     const { data } = await useFetch<z.infer<typeof PlaylistAPIResponseModel>>({

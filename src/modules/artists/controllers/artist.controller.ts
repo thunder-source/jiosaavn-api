@@ -376,5 +376,44 @@ export class ArtistController implements Routes {
         return ctx.json({ success: true, data: response })
       }
     )
+
+    this.controller.openapi(
+      createRoute({
+        method: 'get',
+        path: '/top-artists',
+        tags: ['Artists'],
+        summary: `Retrieve top artist's`,
+        description: 'Retrieve a list of top artists',
+        operationId: 'getTopArtist',
+        responses: {
+          200: {
+            description: 'Successful response with a list of albums for the artist',
+            content: {
+              'application/json': {
+                schema: z.object({
+                  success: z.boolean().openapi({
+                    description: 'Indicates whether the request was successful',
+                    type: 'boolean',
+                    example: true
+                  }),
+                  data: ArtistAlbumModel.openapi({
+                    description: 'An array of albums associated with the artist'
+                  })
+                })
+              }
+            }
+          },
+          404: {
+            description: 'Artist not found for the given ID'
+          }
+        }
+      }),
+      async (ctx) => {
+
+        const response = await this.artistService.getTopArtist()
+
+        return ctx.json({ success: true, data: response })
+      }
+    )
   }
 }

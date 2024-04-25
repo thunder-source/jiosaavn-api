@@ -1,5 +1,6 @@
 import type { z } from 'zod'
 import type { LyricsAPIResponseModel, LyricsModel, SongAPIResponseModel, SongModel } from '#modules/songs/models'
+import type { TopArtistAPIResponseModelBase, TopArtistModel, TopArtistModelBase } from '#modules/artists/models/artist-song.model.js'
 import { createDownloadLinks, createImageLinks } from '#common/helpers'
 import { createArtistMapPayload } from '#modules/artists/helpers'
 
@@ -38,4 +39,12 @@ export const createSongLyricsPayload = (
   lyrics: lyrics?.lyrics,
   snippet: lyrics?.snippet,
   copyright: lyrics?.lyrics_copyright
+})
+
+export const createTopArtistPayload = (artist: z.infer<typeof TopArtistAPIResponseModelBase>): z.infer<typeof TopArtistModelBase> => ({
+  artistid: artist.artistid,
+  name: artist.name,
+  image: artist.image,
+  followerCount: artist.follower_count,
+  url: artist.perma_url,
 })

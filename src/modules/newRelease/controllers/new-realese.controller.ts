@@ -92,10 +92,9 @@ export class NewReleasesController implements Routes {
       }),
       async (ctx) => {
         const { page, language, limit } = ctx.req.valid('query')
-        console.log("response", page, language, limit)
 
         const response = await this.newReleasesService.getNewRealese({ language: language || 'hindi', page: page || 0, limit: limit || 10 })
-        console.log("response", response, "errojdsfjadsfjaods")
+
         return ctx.json({ success: true, data: response })
       }
     )
