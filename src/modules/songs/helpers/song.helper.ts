@@ -45,6 +45,6 @@ export const createTopArtistPayload = (artist: z.infer<typeof TopArtistAPIRespon
   artistid: artist.artistid,
   name: artist.name,
   image: artist.image,
-  followerCount: artist.follower_count,
+  followerCount: artist?.follower_count ? Number(artist.follower_count) : 0,
   url: artist.perma_url,
 })

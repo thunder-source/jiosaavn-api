@@ -22,8 +22,6 @@ export class GetTopArtistUseCase implements IUseCase<z.infer<typeof TopArtistMod
       params: {}
     })
 
-    console.log(data)
-
     if (!data) throw new HTTPException(404, { message: 'artist songs not found' })
 
     return {

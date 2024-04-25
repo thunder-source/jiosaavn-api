@@ -11,8 +11,8 @@ describe('GetTopArtist', () => {
   })
 
   it('should get artist songs by artist id and return a list of songs', async () => {
-    const songs = await getTopArtistUseCase.execute()
+    const artists = await getTopArtistUseCase.execute()
 
-    expect(() => TopArtistModel.parse(songs)).not.toThrow()
+    expect(() => TopArtistModel.parse(artists)).not.toThrow()
   })
 })

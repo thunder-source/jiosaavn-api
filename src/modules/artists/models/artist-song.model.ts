@@ -24,10 +24,10 @@ export const ArtistSongModel = z.object({
 
 
 export const TopArtistAPIResponseModelBase = z.object({
-  artistId: z.string(),
+  artistid: z.string(),
   name: z.string(),
   image: z.string(),
-  follower_count: z.string(),
+  follower_count: z.number(),
   perma_url: z.string(),
 })
 
@@ -40,7 +40,7 @@ export const TopArtistModelBase = z.object({
   artistid: z.string(),
   name: z.string(),
   image: z.string(),
-  followerCount: z.string(),
+  followerCount: z.number(),
   url: z.string(),
 })
 export const TopArtistModel = z.object({

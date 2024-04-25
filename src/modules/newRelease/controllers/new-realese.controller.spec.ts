@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest'
-import { NewReleasesModel } from '../models'
+import { NewReleasesAPIResponseModel, type NewReleasesAPIResponseModelApi, type NewReleasesModel } from '../models'
 import { NewReleasesController } from './new-realese.controller'
 import type { z } from 'zod'
 
@@ -16,11 +16,13 @@ describe('newReleasesController', () => {
 
   it('new data 123', async () => {
     const response = await newReleasesController.controller.request(
-      '/newRealistes?link=https://www.jiosaavn.com/album/future-nostalgia/ITIyo-GDr7A_'
+      '/newReleases?p=0&n=10&languages=hindi'
     )
 
-    const { data } = (await response.json()) as { data: z.infer<typeof NewReleasesModel> }
-    expect(() => NewReleasesModel.parse(data)).not.toThrow()
+    const { data } = (await response.json()) as {
+      data: z.infer<typeof NewReleasesAPIResponseModelApi>
+    }
+    expect(() => NewReleasesAPIResponseModel.parse(data)).not.toThrow()
   })
 
 })
