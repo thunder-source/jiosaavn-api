@@ -1,8 +1,5 @@
 # JioSaavn API
 
-![GitHub License](https://img.shields.io/github/license/sumitkolhe/jiosaavn-api)
-![GitHub Release](https://img.shields.io/github/v/release/sumitkolhe/jiosaavn-api)
-
 An Unofficial API for downloading high-quality songs, albums, playlists, and more from [JioSaavn](https://jiosaavn.com).
 
 ## 📚 Documentation
@@ -21,7 +18,7 @@ For a detailed list of changes, see the [CHANGELOG](CHANGELOG.md).
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/sumitkolhe/jiosaavn-api
+   git clone https://github.com/thunder-source/jiosaavn-api
    cd jiosaavn-api
    ```
 
@@ -46,6 +43,3 @@ You can easily deploy your own instance of the API by clicking the button below:
 > [!TIP]
 > To ensure the API provides results in the intended language, configure the [Serverless Function Region](https://vercel.com/docs/concepts/functions/serverless-functions/regions) in Vercel to `Mumbai, India (South) - > bom1`.
 
-## 📜 License
-
-This project is distributed under the [MIT License](https://opensource.org/licenses/MIT). For more information, see the [LICENSE](LICENSE) file included in this repository.
