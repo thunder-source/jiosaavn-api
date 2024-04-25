@@ -1,7 +1,6 @@
 import type { z } from 'zod'
 import type { LyricsAPIResponseModel, LyricsModel, SongAPIResponseModel, SongModel } from '#modules/songs/models'
 import type { TopArtistAPIResponseModelBase, TopArtistModel, TopArtistModelBase } from '#modules/artists/models/artist-song.model.js'
-import type { TopArtistAPIResponseModelBase, TopArtistModel, TopArtistModelBase } from '#modules/artists/models/artist-song.model.js'
 import { createDownloadLinks, createImageLinks } from '#common/helpers'
 import { createArtistMapPayload } from '#modules/artists/helpers'
 
