@@ -45,7 +45,3 @@ You can easily deploy your own instance of the API by clicking the button below:
 
 > [!TIP]
 > To ensure the API provides results in the intended language, configure the [Serverless Function Region](https://vercel.com/docs/concepts/functions/serverless-functions/regions) in Vercel to `Mumbai, India (South) - > bom1`.
-
-## 📜 License
-
-This project is distributed under the [MIT License](https://opensource.org/licenses/MIT). For more information, see the [LICENSE](LICENSE) file included in this repository.
