@@ -85,6 +85,7 @@ export class App {
 
   private initializeErrorHandler() {
     this.app.onError((err, ctx) => {
+      console.error(err)
       const error = err as HTTPException
       return ctx.json({ success: false, message: error.message }, error.status || 500)
     })
