@@ -31,7 +31,8 @@ export class GetArtistSongsUseCase implements IUseCase<GetArtistSongsArgs, z.inf
 
     return {
       total: data.topSongs.total,
-      songs: data.topSongs.songs.map((song) => createSongPayload(song))
+      songs: data.topSongs.songs.map((song) => createSongPayload(song)),
+      lastPage: data.topSongs.last_page
     }
   }
 }

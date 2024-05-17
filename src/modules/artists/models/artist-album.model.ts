@@ -13,11 +13,13 @@ export const ArtistAlbumAPIResponseModel = z.object({
   dominantType: z.string(),
   topAlbums: z.object({
     albums: z.array(AlbumAPIResponseModel),
-    total: z.number()
+    total: z.number(),
+    last_page: z.boolean()
   })
 })
 
 export const ArtistAlbumModel = z.object({
   total: z.number(),
-  albums: z.array(AlbumModel)
+  albums: z.array(AlbumModel),
+  lastPage: z.boolean()
 })

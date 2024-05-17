@@ -31,7 +31,8 @@ export class GetArtistAlbumsUseCase implements IUseCase<GetArtistAlbumsArgs, z.i
 
     return {
       total: data.topAlbums.total,
-      albums: data.topAlbums.albums.map((album) => createAlbumPayload(album))
+      albums: data.topAlbums.albums.map((album) => createAlbumPayload(album)),
+      lastPage: data.topAlbums.last_page
     }
   }
 }

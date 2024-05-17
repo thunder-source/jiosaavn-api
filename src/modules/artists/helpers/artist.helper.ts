@@ -45,7 +45,7 @@ export const createArtistPayload = (artist: z.infer<typeof ArtistAPIResponseMode
       type: similarArtist.type,
       dominantType: similarArtist.dominantType,
       aka: similarArtist.aka,
-      bio: similarArtist.bio ? JSON.parse(similarArtist.bio) : null,
+      bio: similarArtist.bio ? similarArtist.bio : null,
       similarArtists: similarArtist.similar ? JSON.parse(similarArtist.similar) : null
     })) || null
 })
