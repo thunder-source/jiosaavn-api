@@ -6,6 +6,11 @@ import { Endpoints } from '#common/constants'
 import { useFetch } from '#common/helpers'
 import { createSongLyricsPayload } from '#modules/songs/helpers'
 
+export interface GetSongLyricsByIdArgs {
+  songId: string
+  dependency?: boolean
+}
+
 export class GetSongLyricsUseCase implements IUseCase<string, z.infer<typeof LyricsModel>> {
   constructor() {}
 
@@ -17,7 +22,17 @@ export class GetSongLyricsUseCase implements IUseCase<string, z.infer<typeof Lyr
       }
     })
 
-    if (!data.lyrics) throw new HTTPException(404, { message: 'lyrics not found' })
+    // console.log('dependency', dependency)
+
+    // if (!data.lyrics) {
+    //   if (dependency)
+    //     return {
+    //       lyrics: 'string',
+    //       copyright: 'string',
+    //       snippet: 'string'
+    //     }
+    //   throw new HTTPException(404, { message: 'lyrics not found' })
+    // }
 
     return createSongLyricsPayload(data)
   }
