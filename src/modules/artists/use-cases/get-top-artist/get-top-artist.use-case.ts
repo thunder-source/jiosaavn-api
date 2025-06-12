@@ -14,7 +14,7 @@ import { Endpoints } from '#common/constants'
 // }
 
 export class GetTopArtistUseCase implements IUseCase<z.infer<typeof TopArtistModel>> {
-  constructor() { }
+  constructor() {}
 
   async execute() {
     const { data } = await useFetch<z.infer<typeof TopArtistAPIResponseModel>>({

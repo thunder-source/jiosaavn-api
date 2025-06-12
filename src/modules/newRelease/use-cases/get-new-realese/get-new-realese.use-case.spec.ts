@@ -14,5 +14,4 @@ describe('GetAlbumById', () => {
 
     expect(() => NewReleasesAPIResponseModel.parse(album)).not.toThrow()
   })
-
 })

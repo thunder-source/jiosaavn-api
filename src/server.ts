@@ -1,5 +1,11 @@
 import { App } from './app'
-import { AlbumController, ArtistController, NewReleasesController, SearchController, SongController } from '#modules/index'
+import {
+  AlbumController,
+  ArtistController,
+  NewReleasesController,
+  SearchController,
+  SongController
+} from '#modules/index'
 import { PlaylistController } from '#modules/playlists/controllers'
 
 const app = new App([

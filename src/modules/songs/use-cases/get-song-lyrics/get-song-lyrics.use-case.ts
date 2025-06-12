@@ -1,4 +1,3 @@
-import { HTTPException } from 'hono/http-exception'
 import type { z } from 'zod'
 import type { IUseCase } from '#common/types'
 import type { LyricsAPIResponseModel, LyricsModel } from '#modules/songs/models'

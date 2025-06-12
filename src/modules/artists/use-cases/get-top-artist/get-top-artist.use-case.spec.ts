@@ -2,7 +2,6 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { GetTopArtistUseCase } from '#modules/artists/use-cases'
 import { TopArtistModel } from '#modules/artists/models'
 
-
 describe('GetTopArtist', () => {
   let getTopArtistUseCase: GetTopArtistUseCase
 

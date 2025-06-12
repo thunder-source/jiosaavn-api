@@ -1,10 +1,12 @@
-import type { NewReleasesAPIResponseModel, NewReleasesAPIResponseModelBase, NewReleasesModel } from '#modules/newRelease/models'
+import type { NewReleasesAPIResponseModelBase, NewReleasesModel } from '#modules/newRelease/models'
 import type { z } from 'zod'
 // import { createSongPayload } from '#modules/songs/helpers'
 import { createImageLinks } from '#common/helpers'
 import { createArtistMapPayload } from '#modules/artists/helpers'
 
-export const createNewReleasesPayload = (album: z.infer<typeof NewReleasesAPIResponseModelBase>): z.infer<typeof NewReleasesModel> => ({
+export const createNewReleasesPayload = (
+  album: z.infer<typeof NewReleasesAPIResponseModelBase>
+): z.infer<typeof NewReleasesModel> => ({
   id: album.id,
   name: album.title,
   description: album.header_desc,
@@ -20,5 +22,5 @@ export const createNewReleasesPayload = (album: z.infer<typeof NewReleasesAPIRes
     featured: album.more_info?.artistMap?.featured_artists?.map(createArtistMapPayload),
     all: album.more_info?.artistMap?.artists?.map(createArtistMapPayload)
   },
-  image: createImageLinks(album.image),
+  image: createImageLinks(album.image)
 })

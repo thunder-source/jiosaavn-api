@@ -11,15 +11,17 @@ export interface GetTopPlaylistByLinkArgs {
   page: number
 }
 
-export class GetTopPlaylistByLinkUseCase implements IUseCase<GetTopPlaylistByLinkArgs, z.infer<typeof TopPlaylistModel>> {
-  constructor() { }
+export class GetTopPlaylistByLinkUseCase
+  implements IUseCase<GetTopPlaylistByLinkArgs, z.infer<typeof TopPlaylistModel>>
+{
+  constructor() {}
 
   async execute({ limit, page }: GetTopPlaylistByLinkArgs) {
     const { data } = await useFetch<z.infer<typeof TopPlaylistAPIResponseModel>>({
       endpoint: Endpoints.playlists.topPlaylist,
       params: {
         n: limit,
-        p: page,
+        p: page
       }
     })
 

@@ -55,6 +55,4 @@ describe('SearchController', () => {
     const { data } = (await response.json()) as { success: boolean; data: z.infer<typeof SearchPlaylistModel> }
     expect(() => SearchPlaylistModel.parse(data)).not.toThrow()
   })
-
-
 })

@@ -90,15 +90,15 @@ export class PlaylistController implements Routes {
 
         const response = link
           ? await this.playlistService.getPlaylistByLink({
-            token: link,
-            page: page || 0,
-            limit: limit || 10
-          })
+              token: link,
+              page: page || 0,
+              limit: limit || 10
+            })
           : await this.playlistService.getPlaylistById({
-            id: id!,
-            page: page || 0,
-            limit: limit || 10
-          })
+              id: id!,
+              page: page || 0,
+              limit: limit || 10
+            })
 
         return ctx.json({ success: true, data: response })
       }

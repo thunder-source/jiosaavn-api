@@ -15,7 +15,7 @@ export const Endpoints = {
   },
   albums: {
     id: 'content.getAlbumDetails',
-    link: 'webapi.get',
+    link: 'webapi.get'
   },
   newReleases: {
     id: 'content.getAlbums'

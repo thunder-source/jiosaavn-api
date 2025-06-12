@@ -70,7 +70,6 @@ export const PlaylistModel = z.object({
   artists: z.array(ArtistMapModel).nullable()
 })
 
-
 export const TopPlaylistModelItem = z.object({
   id: z.string(),
   name: z.string(),
@@ -92,7 +91,6 @@ export const TopPlaylistModel = z.object({
   result: z.array(TopPlaylistModelItem)
 })
 
-
 export const TopPlaylistAPIResponseModelSingleItem = z.object({
   id: z.string(),
   title: z.string(),
@@ -105,12 +103,11 @@ export const TopPlaylistAPIResponseModelSingleItem = z.object({
     firstname: z.string(),
     follower_count: z.string(),
     last_updated: z.string(),
-    uid: z.string(),
+    uid: z.string()
   }),
   explicit_content: z.string(),
-  mini_obj: z.boolean(),
+  mini_obj: z.boolean()
 })
-
 
 export const TopPlaylistAPIResponseModel = z.object({
   data: z.array(TopPlaylistAPIResponseModelSingleItem),

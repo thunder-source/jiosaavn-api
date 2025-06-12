@@ -4,27 +4,25 @@ import { NewReleasesModel } from '../models'
 import type { Routes } from '#common/types'
 
 const AllLanguages = [
-  "hindi",
-  "tamil",
-  "telugu",
-  "marathi",
-  "gujarati",
-  "english",
-  "bengali",
-  "kannada",
-  "bhojpuri",
-  "punjabi",
-  "malayalam",
-  "urdu",
-  "rajasthani",
-  "odia",
-  "assamese",
-  "haryanvi"
+  'hindi',
+  'tamil',
+  'telugu',
+  'marathi',
+  'gujarati',
+  'english',
+  'bengali',
+  'kannada',
+  'bhojpuri',
+  'punjabi',
+  'malayalam',
+  'urdu',
+  'rajasthani',
+  'odia',
+  'assamese',
+  'haryanvi'
 ]
 
-
 export class NewReleasesController implements Routes {
-
   public controller: OpenAPIHono
   private newReleasesService: NewReleasesService
 
@@ -93,7 +91,11 @@ export class NewReleasesController implements Routes {
       async (ctx) => {
         const { page, language, limit } = ctx.req.valid('query')
 
-        const response = await this.newReleasesService.getNewRealese({ language: language || 'hindi', page: page || 0, limit: limit || 10 })
+        const response = await this.newReleasesService.getNewRealese({
+          language: language || 'hindi',
+          page: page || 0,
+          limit: limit || 10
+        })
 
         return ctx.json({ success: true, data: response })
       }

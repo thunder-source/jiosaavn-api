@@ -409,7 +409,6 @@ export class ArtistController implements Routes {
         }
       }),
       async (ctx) => {
-
         const response = await this.artistService.getTopArtist()
 
         return ctx.json({ success: true, data: response })

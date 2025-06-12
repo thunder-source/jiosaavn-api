@@ -6,10 +6,8 @@ import { createAlbumPayload } from '#modules/albums/helpers'
 import { useFetch } from '#common/helpers'
 import { Endpoints } from '#common/constants'
 
-
 export class GetAlbumByIdUseCase implements IUseCase<string, z.infer<typeof AlbumModel>> {
-  constructor() { }
-
+  constructor() {}
 
   async execute(id: string) {
     const { data } = await useFetch<z.infer<typeof AlbumAPIResponseModel>>({
